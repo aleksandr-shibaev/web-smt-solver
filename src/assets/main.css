@@ -1,0 +1,159 @@
+:root {
+  color-scheme: dark;
+
+  /* Vibrant Midnight Indigo-Slate Dark Palette */
+  --bg-main: #121724;
+  --bg-secondary: #182032;
+  --bg-tertiary: #212b42;
+  --bg-editor: #0e131f;
+  --bg-toolbar: #0b0f19;
+
+  --border-color: #2c3957;
+  --border-strong: #475b87;
+
+  --text-main: #f8fafc;
+  --text-secondary: #d6e0f0;
+  --text-muted: #8fa1c2;
+
+  /* Bright Electric Royal Blue Accent */
+  --accent-primary: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-soft: rgba(56, 189, 248, 0.2);
+
+  /* Crisp Semantic Status Tokens */
+  --status-error: #fb7185;
+  --status-error-hover: #f43f5e;
+  --status-error-bg: rgba(251, 113, 133, 0.16);
+  --status-error-border: rgba(251, 113, 133, 0.45);
+
+  --status-success: #4ade80;
+  --status-success-bg: rgba(74, 222, 128, 0.16);
+  --status-success-border: rgba(74, 222, 128, 0.45);
+
+  /* Layout Dimensions */
+  --topbar-height: 48px;
+  --subbar-height: 44px;
+  --sidebar-width: 230px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* High-Contrast Vibrant Dracula Syntax Tokens */
+  --color-comment: #8b9dc3;
+  --color-keyword: #5eff82;
+  --color-type: #ff9ef5;
+  --color-variable: #7dd3fc;
+  --color-operator: #facc15;
+  --color-numeric: #fb923c;
+  --color-boolean: #fef08a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #364566 transparent;
+}
+
+::selection {
+  background-color: rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 960px) {
+  body {
+    height: auto;
+    overflow: auto;
+  }
+}
+
+/* Keyboard Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+
+/* Disable Ligatures for Exact Operator Clarity */
+code,
+pre,
+textarea {
+  font-variant-ligatures: none;
+  font-feature-settings:
+    'liga' 0,
+    'calt' 0;
+}
+
+/* Custom Thin Scrollbars (WebKit) */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #364566;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #506696;
+}
+
+/* Custom Token Highlighting (Editor, BaseChunk & SolverResults) */
+.code-comment-block-e0,
+.code-comment-line-double-slash-e0 {
+  color: var(--color-comment);
+  font-style: italic;
+}
+
+.code-keyword-control-e0 {
+  color: var(--color-keyword);
+  font-weight: 700;
+}
+
+.code-keyword-operator-e0 {
+  color: var(--color-operator);
+  font-weight: 700;
+}
+
+.code-constant-numeric-e0 {
+  color: var(--color-numeric);
+  font-weight: 700;
+}
+
+.code-constant-language-boolean-e0 {
+  color: var(--color-boolean);
+  font-weight: 700;
+}
+
+.code-support-function-e0 {
+  color: var(--color-type);
+  font-weight: 700;
+}
+
+.code-variable-other-e0 {
+  color: var(--color-variable);
+  font-weight: 600;
+}
+
+.code-punctuation-definition-bracket-e0,
+.code-punctuation-terminator-statement-e0 {
+  color: var(--text-secondary);
+}

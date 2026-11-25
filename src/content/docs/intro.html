@@ -1,0 +1,149 @@
+<h1>01. Introduction</h1>
+
+<div class="intro-hero-box">
+  <p>
+    <strong>E0 Equation Language</strong> is a declarative constraint language and interactive
+    browser playground for solving systems of arithmetic, logical, and bitwise equations. Instead of
+    writing step-by-step instructions to compute an answer, you state the mathematical conditions
+    that the unknown variables must satisfy, and the solver searches for valid values automatically.
+  </p>
+
+  <p>
+    Every variable in E0 is modeled as a fixed-width binary number with an explicit bit-width
+    configured via the <code>size</code> directive. Under the hood, the engine combines
+    <strong>interval arithmetic</strong> (narrowing down the possible numeric bounds of each
+    expression) with <strong>backtracking search</strong> over individual bits and boolean
+    decisions. Everything runs locally inside your browser in a background Web Worker with zero
+    server setup.
+  </p>
+</div>
+
+<p>
+  Enter an equation in the editor, for example <code>x + x = 4</code>, then press the
+  <strong>"Solve"</strong> button. You must specify the number of bits allocated for each number,
+  e.g., for an 8-bit number: <code>size 8 0</code>.
+</p>
+
+<p>For calculations involving fractions, specify both the number of fractional and integer bits:</p>
+
+<pre data-lang="e0">
+x + x = 7
+
+size 5 1</pre>
+
+<p>
+  If you encounter the error message <code>"Invalid number"</code>, try to increase the number of
+  bits:
+</p>
+
+<pre data-lang="e0">
+x + x = 1024
+
+size 11 0</pre>
+
+<p>
+  Adding a <code>'+'</code> to <code>'size'</code> ensures that all calculated values will be
+  non-negative:
+</p>
+
+<pre data-lang="e0">size + 8 0</pre>
+
+<h2>Design Notes &amp; Limitations</h2>
+
+<div class="intro-notes-stack">
+  <div class="intro-note-card is-warn">
+    <div class="note-card-title">Educational Purpose &amp; Solver Performance</div>
+    <p>
+      This solver is based on <strong>interval arithmetic</strong> combined with a simple
+      <strong>backtracking search</strong> for boolean variables. It is generally slow and performs
+      even worse with modular arithmetic and bitwise operations. This project was created
+      exclusively for educational purposes.
+    </p>
+  </div>
+
+  <div class="intro-note-card is-info">
+    <div class="note-card-title">Declarative Constraints &amp; External Code Generation</div>
+    <p>
+      E0 has no standard loops (like <code>for</code> or <code>while</code>) or classic imperative
+      branching. Instead of step-by-step instructions, you describe the problem using declarative
+      equations and constraints.
+    </p>
+    <p>
+      A template-style preprocessor is planned for upcoming releases. However, even after templating
+      is added, it is still better to generate E0 code using your favorite programming language.
+    </p>
+  </div>
+</div>
+
+<style>
+  .intro-hero-box {
+    padding: 16px 18px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(33, 43, 66, 0.85) 100%);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-primary);
+    border-left-color: #fbbf24;
+  }
+
+  .intro-hero-box p {
+    font-size: 0.96rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .intro-hero-box p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .intro-notes-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .intro-note-card {
+    padding: 15px 18px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-left-width: 3px;
+  }
+
+  .intro-note-card.is-warn {
+    border-left-color: #fbbf24;
+  }
+
+  .intro-note-card.is-info {
+    border-left-color: var(--accent-primary);
+  }
+
+  .note-card-title {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+  }
+
+  .intro-note-card.is-warn .note-card-title {
+    color: #fbbf24;
+  }
+
+  .intro-note-card.is-info .note-card-title {
+    color: var(--accent-primary);
+  }
+
+  .intro-note-card p {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .intro-note-card p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .intro-hero-box strong {
+    color: #fbbf24 !important;
+  }
+</style>
